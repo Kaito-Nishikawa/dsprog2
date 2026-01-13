@@ -50,7 +50,6 @@ def main(page: ft.Page):
     page.padding = 0
     page.bgcolor = "#B0BEC5"
 
-    # 地域データ取得
     area_json = requests.get(AREA_URL).json()
     centers = area_json["centers"]
     offices = area_json["offices"]
@@ -61,9 +60,6 @@ def main(page: ft.Page):
         run_spacing=20,
     )
 
-    # -------------------------
-    # 天気 → アイコン変換
-    # -------------------------
     def weather_icon(weather):
         if "雨" in weather:
             return ft.Icons.UMBRELLA, "blue"
@@ -74,9 +70,7 @@ def main(page: ft.Page):
         else:
             return ft.Icons.WB_SUNNY, "orange"
 
-    # -------------------------
-    # 天気取得＆保存
-    # -------------------------
+
     def load_weather(area_code):
         weather_cards.controls.clear()
 
